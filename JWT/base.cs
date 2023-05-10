@@ -12,8 +12,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Random secret key creation 
-        byte[] key = Encoding.UTF8.GetBytes("n243g7beprmwclm870bknltemr456poö%masş&lv#mb1fk'rm!b");
+        // Secret key definiton 
+        byte[] key = Encoding.UTF8.GetBytes("n243g7bşöüepçşirçimwclm870bk.?nltemr456poö%masş&lv#mb1fk'rm!b");
 
 
         // Writing the secret key in case of if we want to change the parameters later in precaution
