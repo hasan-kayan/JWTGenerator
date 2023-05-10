@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
@@ -8,10 +10,19 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Kullanıcıdan gerekli bilgilerin alınması
-        Console.Write("Enter secret key: ");
-        string secretKey = Console.ReadLine();
+        // Random secret key oluşturulması
+        byte[] key = new byte[64];
+        using (var generator = new RNGCryptoServiceProvider())
+        {
+            generator.GetBytes(key);
+        }
 
+        string base64Key = Convert.ToBase64String(key);
+
+        // Secret key'in dosyaya kaydedilmesi
+        File.WriteAllText("keys.txt", base64Key);
+
+        // JWT token'in üretilmesi
         Console.Write("Enter issuer: ");
         string issuer = Console.ReadLine();
 
@@ -21,8 +32,7 @@ class Program
         Console.Write("Enter expiration in minutes: ");
         int expiryInMinutes = Convert.ToInt32(Console.ReadLine());
 
-        // JWT token'in üretilmesi
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+        var securityKey = new SymmetricSecurityKey(key);
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
 
         var claims = new[]
