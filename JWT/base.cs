@@ -12,38 +12,28 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Secret key definiton 
+        // Secret key definition 
         byte[] key = Encoding.UTF8.GetBytes("fdnlkgdbnglf%&//(vbmfkdlk21345t3");
-
-        string Name = Console.ReadLine();
 
         // Writing the secret key in case of if we want to change the parameters later in precaution
         File.WriteAllText("keys.txt", Convert.ToBase64String(key));
 
-
-        // User input for token data 
+        // Reading payload from file
         var payload = new Dictionary<string, object>();
-        while (true)
+        var lines = File.ReadAllLines("payload.txt");
+        foreach (var line in lines)
         {
-            Console.WriteLine("Enter the key for the claim (or type 'exit' to finish):"); // Take the parameter header
-            string keyName = Console.ReadLine();
-
-            if (keyName == "exit")
+            var parts = line.Split('=');
+            if (parts.Length == 2)
             {
-                break;
+                payload.Add("data" + (payload.Count + 1), parts[1]);
             }
-
-            Console.WriteLine("Enter the value for the claim:"); // Take the parameter value
-            string keyValue = Console.ReadLine();
-
-            payload.Add(keyName, keyValue);
         }
 
         // SymmetricSecurityKey and SigningCredentials objects 
         // This objects will be used while the signutre part of JWT creating 
         var securityKey = new SymmetricSecurityKey(key);
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
-
 
         // Payload data is importing to JWT 
         var claims = payload.Select(x => new Claim(x.Key, x.Value.ToString())).ToArray();
