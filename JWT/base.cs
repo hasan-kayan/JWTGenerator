@@ -13,8 +13,9 @@ class Program
     static void Main(string[] args)
     {
         // Secret key definiton 
-        byte[] key = Encoding.UTF8.GetBytes("n243g7bşöüepçşirçimwclm870bk.?nltemr456poö%masş&lv#mb1fk'rm!b");
+        byte[] key = Encoding.UTF8.GetBytes("fdnlkgdbnglf%&//(vbmfkdlk21345t3");
 
+        string Name = Console.ReadLine();
 
         // Writing the secret key in case of if we want to change the parameters later in precaution
         File.WriteAllText("keys.txt", Convert.ToBase64String(key));
