@@ -13,18 +13,11 @@ class Program
     static void Main(string[] args)
     {
         // Random secret key creation 
-        byte[] key = new byte[64];
-        using (var generator = new RNGCryptoServiceProvider())
-        {
-            generator.GetBytes(key);
-        }
-
-        // TypeCasting Part to string 
-        string base64Key = Convert.ToBase64String(key);
+        byte[] key = Encoding.UTF8.GetBytes("n243g7beprmwclm870bknltemr456poö%masş&lv#mb1fk'rm!b");
 
 
         // Writing the secret key in case of if we want to change the parameters later in precaution
-        File.WriteAllText("keys.txt", base64Key);
+        File.WriteAllText("keys.txt", Convert.ToBase64String(key));
 
 
         // User input for token data 
