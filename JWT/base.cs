@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,45 +12,56 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Random secret key oluşturulması
+        // Random secret key creation 
         byte[] key = new byte[64];
         using (var generator = new RNGCryptoServiceProvider())
         {
             generator.GetBytes(key);
         }
 
+        // TypeCasting Part to string 
         string base64Key = Convert.ToBase64String(key);
 
-        // Secret key'in dosyaya kaydedilmesi
+
+        // Writing the secret key in case of if we want to change the parameters later in precaution
         File.WriteAllText("keys.txt", base64Key);
 
-        // JWT token'in üretilmesi
-        Console.Write("Enter issuer: ");
-        string issuer = Console.ReadLine();
 
-        Console.Write("Enter audience: ");
-        string audience = Console.ReadLine();
+        // User input for token data 
+        var payload = new Dictionary<string, object>();
+        while (true)
+        {
+            Console.WriteLine("Enter the key for the claim (or type 'exit' to finish):"); // Take the parameter header
+            string keyName = Console.ReadLine();
 
-        Console.Write("Enter expiration in minutes: ");
-        int expiryInMinutes = Convert.ToInt32(Console.ReadLine());
+            if (keyName == "exit")
+            {
+                break;
+            }
 
+            Console.WriteLine("Enter the value for the claim:"); // Take the parameter value
+            string keyValue = Console.ReadLine();
+
+            payload.Add(keyName, keyValue);
+        }
+
+        // SymmetricSecurityKey and SigningCredentials objects 
+        // This objects will be used while the signutre part of JWT creating 
         var securityKey = new SymmetricSecurityKey(key);
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
 
-        var claims = new[]
-        {
-            new Claim(ClaimTypes.Name, "Hasan Kayan"),
-            new Claim(ClaimTypes.Email, "hasankayan2000@hotmail.com")
-        };
 
+        // Payload data is importing to JWT 
+        var claims = payload.Select(x => new Claim(x.Key, x.Value.ToString())).ToArray();
+
+        // JwtSecurityToken Object Creation 
         var token = new JwtSecurityToken(
-            issuer: issuer,
-            audience: audience,
+            expires: DateTime.UtcNow.AddHours(1), // Expires Time Valued
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
             signingCredentials: signingCredentials
         );
 
+        // JwtSecurityToken Object TypeCasting to String 
         var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
         Console.WriteLine("Generated JWT token: " + jwtToken);
 
