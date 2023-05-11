@@ -15,7 +15,7 @@ class Program2
     {
         // Create a new SymmetricSecurityKey using the specified key as a UTF-8 encoded string.
         var securityKey = new SymmetricSecurityKey(
-            System.Text.Encoding.UTF8.GetBytes("1234567890-1234567890")
+            System.Text.Encoding.UTF8.GetBytes("1234567890-1234567890_HASk352^++%&&dsnvlkbnkl1234567890_HASk352^++%&&dsnvlkbnkl")
         );
         // Create a new SigningCredentials with the specified key and algorithm.
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
