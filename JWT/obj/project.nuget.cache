@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZEtZmpu90/eJ6dQVlMT7E3LuxPDIoXaDMpuq8Qp8SGVLGd5EBFbaf1KVAO/9aoYd61dRi8gRlGWgmg0Aq6Edmw==",
+  "dgSpecHash": "fKNO05XLvZIrjDyNiwJ443jR5QJkNnQp3+UgQaTWksYihdWPEpcAFQquRKX8hlPzKq0KlCmjJ7cYQ1tZan3GjA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hasan\\Desktop\\JWT\\JWT\\JWT\\JWT.csproj",
+  "projectFilePath": "C:\\Users\\hasan\\Desktop\\REPOS\\JWT\\JWT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hasan\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\hasan\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.30.0\\microsoft.identitymodel.abstractions.6.30.0.nupkg.sha512",

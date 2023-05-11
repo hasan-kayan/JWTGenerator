@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hasan\\Desktop\\JWT\\JWT\\JWT\\JWT.csproj": {}
+    "C:\\Users\\hasan\\Desktop\\REPOS\\JWT\\JWT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hasan\\Desktop\\JWT\\JWT\\JWT\\JWT.csproj": {
+    "C:\\Users\\hasan\\Desktop\\REPOS\\JWT\\JWT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hasan\\Desktop\\JWT\\JWT\\JWT\\JWT.csproj",
+        "projectUniqueName": "C:\\Users\\hasan\\Desktop\\REPOS\\JWT\\JWT.csproj",
         "projectName": "JWT",
-        "projectPath": "C:\\Users\\hasan\\Desktop\\JWT\\JWT\\JWT\\JWT.csproj",
+        "projectPath": "C:\\Users\\hasan\\Desktop\\REPOS\\JWT\\JWT.csproj",
         "packagesPath": "C:\\Users\\hasan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hasan\\Desktop\\JWT\\JWT\\JWT\\obj\\",
+        "outputPath": "C:\\Users\\hasan\\Desktop\\REPOS\\JWT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
